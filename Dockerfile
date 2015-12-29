@@ -1,5 +1,7 @@
 FROM ubuntu:14.04
 
+ENV TERM xterm
+ENV DEBIAN_FRONTEND noninteractive
 RUN groupadd sentry && useradd --create-home --home-dir /home/sentry -g sentry sentry
 WORKDIR /home/sentry
 
