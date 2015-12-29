@@ -6,7 +6,7 @@ RUN groupadd sentry && useradd --create-home --home-dir /home/sentry -g sentry s
 WORKDIR /home/sentry
 
 RUN apt-get update -y
-RUN apt-get install libmysqlclient-dev -y
+RUN apt-get install libmysqlclient-dev python_pip -y
 
 # If you change this, you'll also need to install the appropriate python
 # package:
