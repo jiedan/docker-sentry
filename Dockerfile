@@ -3,9 +3,12 @@ FROM ubuntu:14.04
 RUN groupadd sentry && useradd --create-home --home-dir /home/sentry -g sentry sentry
 WORKDIR /home/sentry
 
+RUN apt-get update -y
+RUN apt-get install libmysqlclient-dev -y
+
 # If you change this, you'll also need to install the appropriate python
 # package:
-RUN pip install psycopg2 mysql-python
+RUN pip install mysql-python 
 
 # You'll need to install the required dependencies for Memcached:
 RUN pip install python-memcached
@@ -13,7 +16,7 @@ RUN pip install python-memcached
 # You'll need to install the required dependencies for Redis buffers:
 RUN pip install redis hiredis nydus
 
-ENV SENTRY_VERSION 7.7.0
+ENV SENTRY_VERSION 8.0.0rc1
 
 RUN pip install sentry==$SENTRY_VERSION
 
