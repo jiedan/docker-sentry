@@ -4,7 +4,7 @@ set -e
 
 if [ "$1" = 'sentry' ]; then
 	defaultConf='/home/sentry/.sentry/sentry.conf.py'
-	linksConf='/home/sentry/docker-links.conf.py'
+	linksConf='/etc/sentry/sentry.conf.py'
 	
 	if [ ! -s "$defaultConf" ]; then
 		sentry init "$defaultConf"
