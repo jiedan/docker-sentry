@@ -9,6 +9,7 @@ RUN rm /etc/apt/sources.list
 COPY sources.list /etc/apt/sources.list
 RUN apt-get update -y
 RUN apt-get install libmysqlclient-dev python-pip python-dev build-essential -y
+RUN apt-get install libxslt1-dev libxml2-dev libz-dev libffi-dev libssl-dev libpq-dev libyaml-dev -y
 
 # If you change this, you'll also need to install the appropriate python
 # package:
