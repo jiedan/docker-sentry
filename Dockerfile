@@ -10,14 +10,14 @@ RUN apt-get install libmysqlclient-dev -y
 
 # If you change this, you'll also need to install the appropriate python
 # package:
-RUN pip install mysql-python -i https://pypi.mirrors.ustc.edu.cn/simple/
+RUN pip install mysql-python -i http://mirrors.aliyun.com/pypi/simple/
 
 # You'll need to install the required dependencies for Redis buffers:
-RUN pip install redis hiredis nydus -i https://pypi.mirrors.ustc.edu.cn/simple/
+RUN pip install redis hiredis nydus -i http://mirrors.aliyun.com/pypi/simple/
 
 ENV SENTRY_VERSION 8.0.0rc1
 
-RUN pip install sentry==$SENTRY_VERSION -i https://pypi.mirrors.ustc.edu.cn/simple/
+RUN pip install sentry==$SENTRY_VERSION -i http://mirrors.aliyun.com/pypi/simple/
 
 RUN mkdir -p /home/sentry/.sentry \
 	&& chown -R sentry:sentry /home/sentry/.sentry
