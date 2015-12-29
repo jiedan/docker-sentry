@@ -35,8 +35,8 @@ ENV C_FORCE_ROOT 1
 
 COPY docker-entrypoint.sh /
 
-USER sentry
 EXPOSE 9000
+VOLUME /var/lib/sentry/files
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["sentry", "start"]
