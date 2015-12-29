@@ -1,13 +1,27 @@
-# Explicitly 2.7.10 because of https://github.com/getsentry/sentry/issues/2429
-FROM python:2.7.10
+FROM ubuntu:14.04
 
-# Sane defaults for pip
-ENV PIP_NO_CACHE_DIR off
-ENV PIP_DISABLE_PIP_VERSION_CHECK on
+ENV TERM xterm
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN rm /etc/apt/sources.list
+COPY sources.list /etc/apt/sources.list
+RUN apt-get update -y
+RUN apt-get install libmysqlclient-dev python-pip python-dev build-essential -y
+RUN apt-get install libxslt1-dev libxml2-dev libz-dev libffi-dev libssl-dev libpq-dev libyaml-dev -y
+
+# If you change this, you'll also need to install the appropriate python
+# package:
+RUN pip install mysql-python -i http://mirrors.aliyun.com/pypi/simple/
+
+# You'll need to install the required dependencies for Redis buffers:
+RUN pip install redis hiredis nydus -i http://mirrors.aliyun.com/pypi/simple/
 
 ENV SENTRY_VERSION 8.0.0rc1
 
-RUN pip install sentry==$SENTRY_VERSION
+RUN pip install sentry==$SENTRY_VERSION -i http://mirrors.aliyun.com/pypi/simple/
+
+RUN echo "export TERM=xterm" >> ~/.bashrc
+RUN echo "export DEBIAN_FRONTEND=noninteractive" >> ~/.bashrc
 
 ENV SENTRY_CONF /etc/sentry
 ENV SENTRY_FILESTORE_DIR /var/lib/sentry/files
