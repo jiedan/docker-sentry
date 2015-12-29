@@ -8,7 +8,7 @@ WORKDIR /home/sentry
 RUN rm /etc/apt/sources.list
 COPY sources.list /etc/apt/sources.list
 RUN apt-get update -y
-RUN apt-get install libmysqlclient-dev python-pip -y
+RUN apt-get install libmysqlclient-dev python-pip python-dev build-essential -y
 
 # If you change this, you'll also need to install the appropriate python
 # package:
