@@ -28,6 +28,9 @@ RUN mkdir -p /home/sentry/.sentry \
 COPY docker-links.conf.py /home/sentry/
 COPY docker-entrypoint.sh /
 
+RUN echo "export TERM=xterm" >> ~/.bashrc
+RUN echo "export DEBIAN_FRONTEND=noninteractive" >> ~/.bashrc
+
 USER sentry
 EXPOSE 9000
 
