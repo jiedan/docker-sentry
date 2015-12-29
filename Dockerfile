@@ -1,7 +1,7 @@
-FROM python:2.7
+FROM ubuntu:14.04
 
-RUN groupadd user && useradd --create-home --home-dir /home/user -g user user
-WORKDIR /home/user
+RUN groupadd sentry && useradd --create-home --home-dir /home/sentry -g sentry sentry
+WORKDIR /home/sentry
 
 # If you change this, you'll also need to install the appropriate python
 # package:
@@ -17,13 +17,13 @@ ENV SENTRY_VERSION 7.7.0
 
 RUN pip install sentry==$SENTRY_VERSION
 
-RUN mkdir -p /home/user/.sentry \
-	&& chown -R user:user /home/user/.sentry
+RUN mkdir -p /home/sentry/.sentry \
+	&& chown -R sentry:sentry /home/sentry/.sentry
 
-COPY docker-links.conf.py /home/user/
+COPY docker-links.conf.py /home/sentry/
 COPY docker-entrypoint.sh /
 
-USER user
+USER sentry
 EXPOSE 9000
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
