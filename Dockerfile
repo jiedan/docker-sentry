@@ -5,6 +5,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN groupadd sentry && useradd --create-home --home-dir /home/sentry -g sentry sentry
 WORKDIR /home/sentry
 
+RUN rm /etc/apt/sources.list
+COPY sources.list /etc/apt/sources.list
 RUN apt-get update -y
 RUN apt-get install libmysqlclient-dev python-pip -y
 
@@ -24,8 +26,6 @@ RUN mkdir -p /home/sentry/.sentry \
 
 # COPY docker-links.conf.py /home/sentry/
 # COPY docker-entrypoint.sh /
-RUN rm /etc/apt/sources.list
-COPY sources.list /etc/apt/sources.list
 
 RUN echo "export TERM=xterm" >> ~/.bashrc
 RUN echo "export DEBIAN_FRONTEND=noninteractive" >> ~/.bashrc
