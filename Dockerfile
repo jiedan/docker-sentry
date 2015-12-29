@@ -39,4 +39,4 @@ EXPOSE 9000
 VOLUME /var/lib/sentry/files
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["sentry", "start"]
+CMD ["start"]
