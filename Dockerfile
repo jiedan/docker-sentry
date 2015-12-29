@@ -31,7 +31,6 @@ RUN echo "export DEBIAN_FRONTEND=noninteractive" >> ~/.bashrc
 USER sentry
 EXPOSE 9000
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
-
+# ENTRYPOINT ["/docker-entrypoint.sh"]
 ENV SENTRY_CONF /etc/sentry/sentry.conf.py
 CMD ["sentry", "start"]
