@@ -12,9 +12,6 @@ RUN apt-get install libmysqlclient-dev -y
 # package:
 RUN pip install mysql-python 
 
-# You'll need to install the required dependencies for Memcached:
-RUN pip install python-memcached
-
 # You'll need to install the required dependencies for Redis buffers:
 RUN pip install redis hiredis nydus
 
@@ -25,8 +22,8 @@ RUN pip install sentry==$SENTRY_VERSION
 RUN mkdir -p /home/sentry/.sentry \
 	&& chown -R sentry:sentry /home/sentry/.sentry
 
-COPY docker-links.conf.py /home/sentry/
-COPY docker-entrypoint.sh /
+# COPY docker-links.conf.py /home/sentry/
+# COPY docker-entrypoint.sh /
 
 RUN echo "export TERM=xterm" >> ~/.bashrc
 RUN echo "export DEBIAN_FRONTEND=noninteractive" >> ~/.bashrc
