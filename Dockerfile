@@ -26,7 +26,7 @@ RUN mkdir -p /home/sentry/.sentry \
 	&& chown -R sentry:sentry /home/sentry/.sentry
 
 # COPY docker-links.conf.py /home/sentry/
-# COPY docker-entrypoint.sh /
+COPY docker-entrypoint.sh /
 
 RUN echo "export TERM=xterm" >> ~/.bashrc
 RUN echo "export DEBIAN_FRONTEND=noninteractive" >> ~/.bashrc
@@ -34,6 +34,6 @@ RUN echo "export DEBIAN_FRONTEND=noninteractive" >> ~/.bashrc
 USER sentry
 EXPOSE 9000
 
-# ENTRYPOINT ["/docker-entrypoint.sh"]
-ENV SENTRY_CONF /etc/sentry/sentry.conf.py
+ENTRYPOINT ["/docker-entrypoint.sh"]
+# ENV SENTRY_CONF /etc/sentry/sentry.conf.py
 CMD ["sentry", "start"]
